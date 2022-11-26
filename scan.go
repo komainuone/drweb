@@ -144,11 +144,27 @@ func ParseDrWEBOutput(drwebOut, baseInfo string, drwebErr error) (ResultsData, e
 		if len(line) != 0 {
 			if strings.Contains(line, "- Ok") {
 				break
-			}
-			if strings.Contains(line, "infected with") {
+
+			} else {
+
 				drweb.Infected = true
-				drweb.Result = strings.TrimSpace(strings.TrimPrefix(line, path+" - infected with"))
+				drweb.Result = strings.TrimSpace(strings.TrimPrefix(line, path+" - "))
+
 			}
+
+			//if strings.Contains(line, "infected with") {
+			//	drweb.Infected = true
+			//	drweb.Result = strings.TrimSpace(strings.TrimPrefix(line, path+" - infected with"))
+			//}
+			//
+			//if strings.Contains(line, "threats found:") {
+			//	threat := strings.TrimPrefix(strings.TrimSpace(line), "threats found:")
+			//	if len(threat) > 0 {
+			//		drweb.Infected = true
+			//		drweb.Result = strings.TrimSpace(strings.TrimPrefix(line, path+" - "))
+			//	}
+			//}
+
 		}
 	}
 
